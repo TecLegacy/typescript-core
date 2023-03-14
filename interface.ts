@@ -18,7 +18,7 @@ function findHouses(
 function findHouses(
   arg1: string | House[],
   arg2?: (house: House) => boolean
-): HouseWithID {
+): HouseWithID[] {
   let tempHouseWithID = {
     id: 0,
     name: null,
@@ -26,8 +26,9 @@ function findHouses(
   };
   const housesType = typeof arg1 === 'string' ? JSON.parse(arg1) : arg1;
 
+  //#FIXME: Learn later on 
   console.log(housesType);
-  return [];
+  return (arg2 ? arg1.filter((value)))
 }
 
 console.log(
