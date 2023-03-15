@@ -16,6 +16,7 @@ const x = keshav(10, 20);
 
 console.log(x);
 
+//DONE: - RECORD<KEY,TYPE>
 interface CatInfo {
   age: number;
   breed: string;
@@ -32,12 +33,22 @@ const cats: Record<CatName, CatInfo> = {
 console.log(cats.boris);
 // ^?
 
+// DONE: FUNCTION OVERLOADING
 interface Format {
   year: number;
   owner: string;
 }
 
+// FUNCTIONS SIGNATURE
 function car(name: string): Format;
 function car(name: string, year: number): Format;
+// IMPEMENTATION
+function car(arg1: string, arg2?: unknown): Format {
+  const carName: string = arg1;
+  const year = typeof arg2 === 'number' ? arg2 : Number(arg2);
 
-function car();
+  return {
+    year: year || 10,
+    owner: carName || 'No one',
+  };
+}

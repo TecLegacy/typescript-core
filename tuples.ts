@@ -1,6 +1,12 @@
 // Named array are tuples -> array's value having name is called tuple
 // React.js -> getter and setter are tuples
 
+type Tuples = [x: string, y: number];
+const xman = 'hello';
+const a: Tuples = [xman, 20];
+console.log(typeof a[0]);
+console.log(a[0]);
+
 // IMPLEMENTATION of useState with closures
 function sayHello(value: string): [() => string, (v: string) => void] {
   let str: string = value;
