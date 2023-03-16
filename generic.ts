@@ -12,33 +12,75 @@ console.log(year());
 
 // RANKER - Pokemon
 
+// function ranker<RankItem>(
+//   items: RankItem[],
+//   ranks: (v: RankItem) => number
+// ): RankItem[] {
+//   const rank = items.map(item => ({
+//     item,
+//     rank: ranks(item),
+//   }));
+//   console.log(rank);
+//   return [];
+// }
+
+// interface Pokemon {
+//   item: string;
+//   hp: number;
+// }
+// const poskemon: Pokemon[] = [
+//   {
+//     item: 'squirtal',
+//     hp: 50,
+//   },
+//   {
+//     item: 'bulbasur',
+//     hp: 20,
+//   },
+// ];
+
+// ranker(poskemon, ({ hp }) => hp);
+// ranker(poskemon, ({ hp }) => hp);
+// ranker(poskemon, ({ hp }) => hp);
+
+interface Rank<RankItem> {
+  item: RankItem;
+  rank: number;
+}
+
 function ranker<RankItem>(
-  items: RankItem[],
-  ranks: (v: RankItem) => number
+  item: RankItem[],
+  rank: (v: RankItem) => number
 ): RankItem[] {
-  const rank = items.map(item => ({
+  const ranks: Rank<RankItem>[] = item.map(item => ({
     item,
-    rank: ranks(item),
+    rank: rank(item),
   }));
+
+  //   Sort pokemon
+  ranks.sort((a, b) => a.rank - b.rank);
   console.log(rank);
-  return [];
+  return ranks.map(rank => rank.item);
 }
 
 interface Pokemon {
-  item: string;
+  name: string;
   hp: number;
 }
-const poskemon: Pokemon[] = [
+
+const pokemini: Pokemon[] = [
   {
-    item: 'squirtal',
+    name: 'bulbasuar',
     hp: 50,
   },
   {
-    item: 'bulbasur',
-    hp: 20,
+    name: 'charizard',
+    hp: 101,
+  },
+  {
+    name: 'squirtal',
+    hp: 70,
   },
 ];
 
-ranker(poskemon, ({ hp }) => hp);
-ranker(poskemon, ({ hp }) => hp);
-ranker(poskemon, ({ hp }) => hp);
+console.log(ranker(pokemini, ({ hp }) => hp));
